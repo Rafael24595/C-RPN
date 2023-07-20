@@ -30,6 +30,10 @@ class NodeLinear {
 			return reference;
 		}
 
+		void SetReference(Optional<NodeLinear<T>> r) {
+			reference = r;
+		}
+
 		void SetReference(NodeLinear<T>* r) {
 			if (r != nullptr) {
 				reference = Optional<NodeLinear<T>>::Some(r);

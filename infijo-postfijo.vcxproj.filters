@@ -30,9 +30,15 @@
     <ClCompile Include="NodeLinear.cpp">
       <Filter>Archivos de origen\structure</Filter>
     </ClCompile>
+    <ClCompile Include="CollectionStack.cpp">
+      <Filter>Archivos de origen\structure</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="NodeLinear.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="CollectionStack.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

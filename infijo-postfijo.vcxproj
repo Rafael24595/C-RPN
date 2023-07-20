@@ -129,10 +129,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="c-rpn.cpp" />
+    <ClCompile Include="CollectionStack.cpp" />
     <ClCompile Include="NodeLinear.cpp" />
     <ClCompile Include="Optional.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CollectionStack.h" />
     <ClInclude Include="NodeLinear.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
