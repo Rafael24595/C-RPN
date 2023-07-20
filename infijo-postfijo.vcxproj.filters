@@ -16,6 +16,9 @@
     <Filter Include="Archivos de origen\utils">
       <UniqueIdentifier>{ec8c2f7e-8e26-48b8-ba67-45fcb54f473e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de origen\structure">
+      <UniqueIdentifier>{c3cdb865-1da0-4701-a9f3-60c55ed63907}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="c-rpn.cpp">
@@ -24,5 +27,13 @@
     <ClCompile Include="Optional.cpp">
       <Filter>Archivos de origen\utils</Filter>
     </ClCompile>
+    <ClCompile Include="NodeLinear.cpp">
+      <Filter>Archivos de origen\structure</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="NodeLinear.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

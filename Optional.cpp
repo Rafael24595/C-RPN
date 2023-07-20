@@ -6,9 +6,11 @@ template <typename T>
 class Optional {
 
 	private:
+
 		T* element;
 
 	public:
+
 		Optional() {
 			element = nullptr;
 		}
@@ -21,8 +23,8 @@ class Optional {
 			return Optional<T>(nullptr);
 		}
 
-		static Optional<T> Some(T* element) {
-			return Optional<T>(element);
+		static Optional<T> Some(T* e) {
+			return Optional<T>(e);
 		}
 
 		bool IsSome() {
@@ -33,9 +35,9 @@ class Optional {
 			return !IsSome();
 		}
 
-		const T& Unwrap() {
+		T* Unwrap() {
 			if (IsSome()) {
-				return *element;
+				return element;
 			}
 			throw std::runtime_error("Attempting to unwrap None Optional");
 		}
