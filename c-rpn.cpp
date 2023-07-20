@@ -38,6 +38,11 @@ int main() {
     std::cout << "Conuter: " << collection.Length();
     std::cout << "\n";
 
+    collection.Delete();
+
+    std::cout << "Conuter: " << collection.Length();
+    std::cout << "\n";
+
     int sum1 = *op1.Unwrap() + *op2.Unwrap();
     int sum2 = *n1.GetElement() + *reference.GetElement();
     std::cout << "Value of sum1 is: " << sum1;

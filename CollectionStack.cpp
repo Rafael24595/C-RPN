@@ -20,26 +20,22 @@ class CollectionStack {
 			return tail;
 		}
 
-		void Insert(NodeLinear<T> child) {
+		void Insert(NodeLinear<T> node) {
 			if (tail.IsNone()) {
-				child.SetReference(Optional<NodeLinear<T>>::None());
+				node.SetReference(Optional<NodeLinear<T>>::None());
 			} else {
-				child.SetReference(tail.Unwrap());
+				node.SetReference(tail.Unwrap());
 			}
-			tail = Optional<NodeLinear<T>>::Some(&child);
+			tail = Optional<NodeLinear<T>>::Some(&node);
 		}
 
 		Optional<NodeLinear<T>> Delete() {
 			if (tail.IsSome()) {
-				NodeLinear<T>* tailAux = tail.Unwrap();
-				Optional<NodeLinear<T>> tailReference = tailAux->GetReference();
-				Optional<NodeLinear<T>> child = Optional<NodeLinear<T>>::None();
-				if (tailReference.IsSome()) {
-					child = Optional<NodeLinear<T>>::Some(tailReference.Unwrap());
-					tailAux->SetReference(Optional<NodeLinear<T>>::None());
-				}
-				tail = child;
-				return Optional<NodeLinear<T>>::Some(tailAux);
+				NodeLinear<T>* tailOriginal = tail.Unwrap();
+				Optional<NodeLinear<T>> tailReference = tailOriginal->GetReference();
+				tailOriginal->SetReference(Optional<NodeLinear<T>>::None());
+				tail = tailReference;
+				return Optional<NodeLinear<T>>::Some(tailOriginal);
 			}
 			return tail;
 		}

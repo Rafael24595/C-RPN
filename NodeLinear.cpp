@@ -13,6 +13,10 @@ class NodeLinear {
 
 	public:
 
+		NodeLinear(T e) {
+			new (this) NodeLinear(&e);
+		}
+
 		NodeLinear(T* e) {
 			element = e;
 			reference = Optional<NodeLinear<T>>::None();
