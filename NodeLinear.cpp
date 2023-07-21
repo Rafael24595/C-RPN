@@ -18,7 +18,11 @@ class NodeLinear {
 		}
 
 		NodeLinear(T* e) {
-			element = e;
+			if (e != nullptr) {
+				element = e;
+			} else {
+				throw std::runtime_error("Cannot set a null pointer as node element");
+			}
 			reference = Optional<NodeLinear<T>>::None();
 		}
 
@@ -27,7 +31,11 @@ class NodeLinear {
 		}
 
 		void SetElement(T* e) {
-			element = e;
+			if (e != nullptr) {
+				element = e;
+			} else {
+				throw std::runtime_error("Cannot set a null pointer as node element");
+			}
 		}
 
 		Optional<NodeLinear<T>> GetReference() {
@@ -38,10 +46,8 @@ class NodeLinear {
 			reference = r;
 		}
 
-		void SetReference(NodeLinear<T>* r) {
-			if (r != nullptr) {
-				reference = Optional<NodeLinear<T>>::Some(r);
-			}
+		void SetReference(NodeLinear<T> r) {
+			reference = Optional<NodeLinear<T>>::Some(&r);
 		}
 
 };

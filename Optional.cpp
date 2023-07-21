@@ -24,7 +24,10 @@ class Optional {
 		}
 
 		static Optional<T> Some(T* e) {
-			return Optional<T>(e);
+			if (e != nullptr) {
+				return Optional<T>(e);
+			}
+			return Optional<T>::None();
 		}
 
 		bool IsSome() {
