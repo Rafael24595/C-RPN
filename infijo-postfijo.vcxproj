@@ -132,7 +132,7 @@
     <ClCompile Include="CollectionHashKey.cpp" />
     <ClCompile Include="CollectionQueue.cpp" />
     <ClCompile Include="CollectionStack.cpp" />
-    <ClCompile Include="NodeKeyLinear.cpp" />
+    <ClCompile Include="NodeHashKeyLinear.cpp" />
     <ClCompile Include="NodeLinear.cpp" />
     <ClCompile Include="OperatorTable.cpp" />
     <ClCompile Include="Optional.cpp" />

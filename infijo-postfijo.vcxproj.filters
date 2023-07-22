@@ -45,7 +45,7 @@
     <ClCompile Include="Tools.cpp">
       <Filter>Archivos de origen\utils</Filter>
     </ClCompile>
-    <ClCompile Include="NodeKeyLinear.cpp">
+    <ClCompile Include="NodeHashKeyLinear.cpp">
       <Filter>Archivos de origen\structure</Filter>
     </ClCompile>
     <ClCompile Include="CollectionHashKey.cpp">

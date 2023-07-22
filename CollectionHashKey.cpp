@@ -7,27 +7,27 @@
 using namespace std;
 
 #include "Optional.cpp"
-#include "NodeKeyLinear.cpp"
+#include "NodeHashKeyLinear.cpp"
 
 template <typename K, typename T>
 class CollectionHashKey {
 
 	private:
 
-		Optional<NodeKeyLinear<K,T>> head;
+		Optional<NodeHashKeyLinear<K,T>> head;
 
-		void Insert(NodeKeyLinear<K,T>* node) {
-			node->SetReference(Optional<NodeKeyLinear<K,T>>::None());
-			Optional<NodeKeyLinear<K,T>> oNode = Optional<NodeKeyLinear<K,T>>::Some(node);
+		void Insert(NodeHashKeyLinear<K,T>* node) {
+			node->SetReference(Optional<NodeHashKeyLinear<K,T>>::None());
+			Optional<NodeHashKeyLinear<K,T>> oNode = Optional<NodeHashKeyLinear<K,T>>::Some(node);
 			if (head.IsNone()) {
 				head = oNode;
 			}
 			else {
-				NodeKeyLinear<K, T>* previous = head.Unwrap();
+				NodeHashKeyLinear<K, T>* previous = head.Unwrap();
 				while (previous->GetReference().IsSome() && oNode.Unwrap()->GetHashKey() > previous->GetHashKey()) {
 					previous = previous->GetReference().Unwrap();
 				}
-				Optional<NodeKeyLinear<K, T>> next = previous->GetReference();
+				Optional<NodeHashKeyLinear<K, T>> next = previous->GetReference();
 				oNode.Unwrap()->SetReference(next);
 				previous->SetReference(oNode);
 			}
@@ -36,13 +36,13 @@ class CollectionHashKey {
 	public:
 
 		CollectionHashKey() {
-			head = Optional<NodeKeyLinear<K,T>>::None();
+			head = Optional<NodeHashKeyLinear<K,T>>::None();
 		}
 
 		Optional<T> Get(K key) {
 			hash<K> khash;
 			int hashKey = khash(key);
-			Optional<NodeKeyLinear<K, T>> node = head;
+			Optional<NodeHashKeyLinear<K, T>> node = head;
 			while (node.IsSome() && node.Unwrap()->GetHashKey() != hashKey) {
 				node = node.Unwrap()->GetReference();
 			}
@@ -53,28 +53,28 @@ class CollectionHashKey {
 		}
 
 		void Insert(K key, T element) {
-			NodeKeyLinear<K,T>* node = new NodeKeyLinear<K,T>(key, element);
+			NodeHashKeyLinear<K,T>* node = new NodeHashKeyLinear<K,T>(key, element);
 			Insert(node);
 		}
 
 		void Insert(K key, T* element) {
-			NodeKeyLinear<K,T>* node = new NodeKeyLinear<K,T>(key, element);
+			NodeHashKeyLinear<K,T>* node = new NodeHashKeyLinear<K,T>(key, element);
 			Insert(node);
 		}
 
 		Optional<T> Delete(K key) {
 			hash<K> khash;
 			int hashKey = khash(key);
-			Optional<NodeKeyLinear<K, T>> node = head;
-			Optional<NodeKeyLinear<K, T>> previous = Optional<NodeKeyLinear<K, T>>::None();
+			Optional<NodeHashKeyLinear<K, T>> node = head;
+			Optional<NodeHashKeyLinear<K, T>> previous = Optional<NodeHashKeyLinear<K, T>>::None();
 			while (node.IsSome() && node.Unwrap()->GetHashKey() != hashKey) {
 				previous = node;
 				node = node.Unwrap()->GetReference();
 			}
 			if (node.IsSome()) {
-				Optional<NodeKeyLinear<K, T>> reference = node.Unwrap()->GetReference();
+				Optional<NodeHashKeyLinear<K, T>> reference = node.Unwrap()->GetReference();
 				previous.Unwrap()->SetReference(reference);
-				node.Unwrap()->SetReference(Optional<NodeKeyLinear<K, T>>::None());
+				node.Unwrap()->SetReference(Optional<NodeHashKeyLinear<K, T>>::None());
 				return Optional<T>::Some(node.Unwrap()->GetElement());
 			}
 
@@ -87,7 +87,7 @@ class CollectionHashKey {
 				return count;
 			}
 
-			Optional<NodeKeyLinear<K, T>> child = head.Unwrap();
+			Optional<NodeHashKeyLinear<K, T>> child = head.Unwrap();
 			while (child.IsSome()) {
 				child = child.Unwrap()->GetReference();
 				count = count + 1;

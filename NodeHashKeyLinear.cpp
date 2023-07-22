@@ -8,22 +8,22 @@ using namespace std;
 #include "Optional.cpp"
 
 template <typename K, typename T>
-class NodeKeyLinear {
+class NodeHashKeyLinear {
 
 	private:
 
 		int hashKey;
 		K key;
 		T* element;
-		Optional<NodeKeyLinear<K,T>> reference;
+		Optional<NodeHashKeyLinear<K,T>> reference;
 
 	public:
 
-		NodeKeyLinear(K k,T e) {
-			new (this) NodeKeyLinear(k, new T(e));
+		NodeHashKeyLinear(K k,T e) {
+			new (this) NodeHashKeyLinear(k, new T(e));
 		}
 
-		NodeKeyLinear(K k, T* e) {
+		NodeHashKeyLinear(K k, T* e) {
 			if (e != nullptr) {
 				hash<K> khash;
 				hashKey = khash(k);
@@ -33,7 +33,7 @@ class NodeKeyLinear {
 			else {
 				throw std::runtime_error("Cannot set a null pointer as node element");
 			}
-			reference = Optional<NodeKeyLinear<K,T>>::None();
+			reference = Optional<NodeHashKeyLinear<K,T>>::None();
 		}
 
 		int GetHashKey() {
@@ -57,19 +57,19 @@ class NodeKeyLinear {
 			}
 		}
 
-		Optional<NodeKeyLinear<K, T>> GetReference() {
+		Optional<NodeHashKeyLinear<K, T>> GetReference() {
 			return reference;
 		}
 
-		void SetReference(Optional<NodeKeyLinear<K, T>> r) {
+		void SetReference(Optional<NodeHashKeyLinear<K, T>> r) {
 			reference = r;
 		}
 
-		void SetReference(NodeKeyLinear<K, T> r) {
-			reference = Optional<NodeKeyLinear<K, T>>::Some(&r);
+		void SetReference(NodeHashKeyLinear<K, T> r) {
+			reference = Optional<NodeHashKeyLinear<K, T>>::Some(&r);
 		}
 
-		~NodeKeyLinear() {
+		~NodeHashKeyLinear() {
 			delete element;
 		}
 
