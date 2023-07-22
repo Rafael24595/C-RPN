@@ -8,6 +8,7 @@ using namespace std;
 #include "CollectionStack.cpp"
 #include "CollectionQueue.cpp"
 #include "Tools.cpp"
+#include "OperatorTable.cpp"
 
 class Rpn {
 

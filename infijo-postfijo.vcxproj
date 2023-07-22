@@ -129,17 +129,23 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="c-rpn.cpp" />
+    <ClCompile Include="CollectionHashKey.cpp" />
     <ClCompile Include="CollectionQueue.cpp" />
     <ClCompile Include="CollectionStack.cpp" />
+    <ClCompile Include="NodeKeyLinear.cpp" />
     <ClCompile Include="NodeLinear.cpp" />
+    <ClCompile Include="OperatorTable.cpp" />
     <ClCompile Include="Optional.cpp" />
     <ClCompile Include="Tools.cpp" />
     <ClCompile Include="Rpn.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CollectionKey.h" />
     <ClInclude Include="CollectionQueue.h" />
     <ClInclude Include="CollectionStack.h" />
+    <ClInclude Include="NodeBidirectional.h" />
     <ClInclude Include="NodeLinear.h" />
+    <ClInclude Include="OperatorTable.h" />
     <ClInclude Include="Tools.h" />
     <ClInclude Include="ToRpn.h" />
   </ItemGroup>
