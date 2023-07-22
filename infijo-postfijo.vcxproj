@@ -129,13 +129,19 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="c-rpn.cpp" />
+    <ClCompile Include="CollectionQueue.cpp" />
     <ClCompile Include="CollectionStack.cpp" />
     <ClCompile Include="NodeLinear.cpp" />
     <ClCompile Include="Optional.cpp" />
+    <ClCompile Include="Tools.cpp" />
+    <ClCompile Include="Rpn.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CollectionQueue.h" />
     <ClInclude Include="CollectionStack.h" />
     <ClInclude Include="NodeLinear.h" />
+    <ClInclude Include="Tools.h" />
+    <ClInclude Include="ToRpn.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

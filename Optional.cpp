@@ -23,11 +23,15 @@ class Optional {
 			return Optional<T>(nullptr);
 		}
 
+		static Optional<T> Some(T e) {
+			return Some(new T(e));
+		}
+
 		static Optional<T> Some(T* e) {
 			if (e != nullptr) {
 				return Optional<T>(e);
 			}
-			return Optional<T>::None();
+			return None();
 		}
 
 		bool IsSome() {

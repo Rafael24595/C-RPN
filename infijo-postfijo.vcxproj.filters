@@ -19,6 +19,9 @@
     <Filter Include="Archivos de origen\structure">
       <UniqueIdentifier>{c3cdb865-1da0-4701-a9f3-60c55ed63907}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de origen\parser">
+      <UniqueIdentifier>{b5355190-bca4-4ddd-9429-0a80d5c53f57}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="c-rpn.cpp">
@@ -33,12 +36,30 @@
     <ClCompile Include="CollectionStack.cpp">
       <Filter>Archivos de origen\structure</Filter>
     </ClCompile>
+    <ClCompile Include="Rpn.cpp">
+      <Filter>Archivos de origen\parser</Filter>
+    </ClCompile>
+    <ClCompile Include="CollectionQueue.cpp">
+      <Filter>Archivos de origen\structure</Filter>
+    </ClCompile>
+    <ClCompile Include="Tools.cpp">
+      <Filter>Archivos de origen\utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="NodeLinear.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="CollectionStack.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="ToRpn.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="CollectionQueue.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Tools.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

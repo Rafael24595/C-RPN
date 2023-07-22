@@ -14,7 +14,7 @@ class NodeLinear {
 	public:
 
 		NodeLinear(T e) {
-			new (this) NodeLinear(&e);
+			new (this) NodeLinear(new T(e));
 		}
 
 		NodeLinear(T* e) {
@@ -48,6 +48,10 @@ class NodeLinear {
 
 		void SetReference(NodeLinear<T> r) {
 			reference = Optional<NodeLinear<T>>::Some(&r);
+		}
+
+		~NodeLinear() {
+			delete element;
 		}
 
 };

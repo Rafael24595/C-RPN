@@ -4,30 +4,35 @@
 #include "NodeLinear.cpp"
 
 template <typename T>
-class CollectionStack {
+class CollectionQueue {
 
 	private:
 
+		Optional<NodeLinear<T>> head;
 		Optional<NodeLinear<T>> tail;
 
 		void Insert(NodeLinear<T>* node) {
-			if (tail.IsNone()) {
-				node->SetReference(Optional<NodeLinear<T>>::None());
+			node->SetReference(Optional<NodeLinear<T>>::None());
+			Optional<NodeLinear<T>> oNode = Optional<NodeLinear<T>>::Some(node);
+			if (head.IsNone()) {
+				head = oNode;
+				tail = head;
 			}
 			else {
-				node->SetReference(tail.Unwrap());
+				tail.Unwrap()->SetReference(oNode);
+				tail = oNode;
 			}
-			tail = Optional<NodeLinear<T>>::Some(node);
 		}
 
 	public:
 
-		CollectionStack() {
+		CollectionQueue() {
+			head = Optional<NodeLinear<T>>::None();
 			tail = Optional<NodeLinear<T>>::None();
 		}
 
 		Optional<NodeLinear<T>> Get() {
-			return tail;
+			return head;
 		}
 
 		void Insert(T element) {
@@ -41,14 +46,14 @@ class CollectionStack {
 		}
 
 		Optional<NodeLinear<T>> Delete() {
-			if (tail.IsSome()) {
-				NodeLinear<T>* tailOriginal = tail.Unwrap();
-				Optional<NodeLinear<T>> tailReference = tailOriginal->GetReference();
-				tailOriginal->SetReference(Optional<NodeLinear<T>>::None());
-				tail = tailReference;
-				return Optional<NodeLinear<T>>::Some(tailOriginal);
+			if (head.IsSome()) {
+				NodeLinear<T>* headOriginal = head.Unwrap();
+				Optional<NodeLinear<T>> headReference = headOriginal->GetReference();
+				headOriginal->SetReference(Optional<NodeLinear<T>>::None());
+				head = headReference;
+				return Optional<NodeLinear<T>>::Some(headOriginal);
 			}
-			return tail;
+			return head;
 		}
 
 		int Length() {
@@ -60,7 +65,7 @@ class CollectionStack {
 			Optional<NodeLinear<T>> child = tail.Unwrap();
 			while (child.IsSome()) {
 				child = child.Unwrap()->GetReference();
-				count = count+1;
+				count = count + 1;
 			}
 
 			return count;
