@@ -17,14 +17,17 @@ class Rpn {
 		CollectionQueue<char> queue;
 
 		void EvalueChar(char ch) {
-			if (Tools::IsNumber(ch) || Tools::IsSeparator(ch) || Tools::IsOpenParenthesis(ch) || Tools::IsBlankSpace(ch)) {
+			if (Tools::IsNumber(ch) || Tools::IsSeparator(ch) || Tools::IsBlankSpace(ch)) {
 				return EvalueDigit(ch);
 			}
 			if (Tools::IsOperator(ch)) {
 				return EvalueOperator(ch);
 			}
+			if (Tools::IsOpenParenthesis(ch)) {
+				return EvalueOpenParenthesis(ch);
+			}
 			if (Tools::IsCloseParenthesis(ch)) {
-				return EvalueParenthesis(ch);
+				return EvalueCloseParenthesis(ch);
 			}
 		}
 
@@ -33,11 +36,26 @@ class Rpn {
 		}
 
 		void EvalueOperator(char ch) {
-			return;
+			stack.Insert(ch);
 		}
 
-		void EvalueParenthesis(char ch) {
-			return;
+		void EvalueOpenParenthesis(char ch) {
+			stack.Insert(ch);
+		}
+
+		void EvalueCloseParenthesis(char ch) {
+			Optional<NodeLinear<char>> node = stack.Delete();
+			if (Tools::IsOpenParenthesis(ch)) {
+				return;
+			}
+			if (node.IsNone()) {
+				throw std::runtime_error("Close parenthesis without initialization detected.");
+			}
+			char* next = node.Unwrap()->GetElement();
+			if (!Tools::IsOpenParenthesis(*next)) {
+				queue.Insert(*next);
+			}
+			return EvalueCloseParenthesis(*next);
 		}
 
 	public:
