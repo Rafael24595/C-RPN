@@ -5,8 +5,8 @@
 using namespace std;
 
 #include "NodeLinear.cpp"
-#include "CollectionStack.cpp"
-#include "CollectionQueue.cpp"
+#include "VectorStack.cpp"
+#include "VectorQueue.cpp"
 #include "Tools.cpp"
 #include "OperatorTable.cpp"
 
@@ -14,8 +14,8 @@ class Rpn {
 
 	private:
 
-		CollectionStack<char> stack;
-		CollectionQueue<char> queue;
+		VectorStack<char> stack;
+		VectorQueue<char> queue;
 
 		void EvalueChar(char ch) {
 			if (Tools::IsNumber(ch) || Tools::IsSeparator(ch) || Tools::IsBlankSpace(ch)) {
@@ -45,14 +45,14 @@ class Rpn {
 		}
 
 		void EvalueCloseParenthesis(char ch) {
-			Optional<NodeLinear<char>> node = stack.Delete();
+			Optional<NodeLinear<char>> node = stack.Remove();
 			if (Tools::IsOpenParenthesis(ch)) {
 				return;
 			}
 			if (node.IsNone()) {
 				throw std::runtime_error("Close parenthesis without initialization detected.");
 			}
-			char* next = node.Unwrap()->GetElement();
+			char* next = node.Unwrap()->GetValue();
 			if (!Tools::IsOpenParenthesis(*next)) {
 				queue.Insert(*next);
 			}
@@ -62,8 +62,8 @@ class Rpn {
 	public:
 
 		Rpn() {
-			stack = CollectionStack<char>();
-			queue = CollectionQueue<char>();
+			stack = VectorStack<char>();
+			queue = VectorQueue<char>();
 		}
 
 		static Rpn Transform(string expression) {
@@ -76,11 +76,11 @@ class Rpn {
 		}
 
 		void Print() {
-			Optional<NodeLinear<char>> node = queue.Delete();
+			Optional<NodeLinear<char>> node = queue.Remove();
 			while (node.IsSome()) {
-				char element = *node.Unwrap()->GetElement();
+				char element = *node.Unwrap()->GetValue();
 				cout << element;
-				node = queue.Delete();
+				node = queue.Remove();
 			}
 		}
 

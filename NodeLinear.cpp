@@ -8,7 +8,7 @@ class NodeLinear {
 
 	private:
 
-		T* element;
+		T* value;
 		Optional<NodeLinear<T>> reference;
 
 	public:
@@ -19,22 +19,22 @@ class NodeLinear {
 
 		NodeLinear(T* e) {
 			if (e != nullptr) {
-				element = e;
+				value = e;
 			} else {
-				throw std::runtime_error("Cannot set a null pointer as node element");
+				throw std::runtime_error("Cannot set a null pointer as node value.");
 			}
 			reference = Optional<NodeLinear<T>>::None();
 		}
 
-		T* GetElement() {
-			return element;
+		T* GetValue() {
+			return value;
 		}
 
-		void SetElement(T* e) {
+		void SetValue(T* e) {
 			if (e != nullptr) {
-				element = e;
+				value = e;
 			} else {
-				throw std::runtime_error("Cannot set a null pointer as node element");
+				throw std::runtime_error("Cannot set a null pointer as node value");
 			}
 		}
 
@@ -51,7 +51,7 @@ class NodeLinear {
 		}
 
 		~NodeLinear() {
-			delete element;
+			delete value;
 		}
 
 };

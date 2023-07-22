@@ -129,10 +129,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="c-rpn.cpp" />
-    <ClCompile Include="CollectionHashKey.cpp" />
-    <ClCompile Include="CollectionQueue.cpp" />
-    <ClCompile Include="CollectionStack.cpp" />
-    <ClCompile Include="NodeHashKeyLinear.cpp" />
+    <ClCompile Include="CollectionHash.cpp" />
+    <ClCompile Include="ToolsCollection.cpp" />
+    <ClCompile Include="VectorQueue.cpp" />
+    <ClCompile Include="VectorStack.cpp" />
+    <ClCompile Include="NodeKeyHashLinear.cpp" />
     <ClCompile Include="NodeLinear.cpp" />
     <ClCompile Include="OperatorTable.cpp" />
     <ClCompile Include="Optional.cpp" />
@@ -143,6 +144,7 @@
     <ClInclude Include="CollectionKey.h" />
     <ClInclude Include="CollectionQueue.h" />
     <ClInclude Include="CollectionStack.h" />
+    <ClInclude Include="CollectionTools.h" />
     <ClInclude Include="NodeBidirectional.h" />
     <ClInclude Include="NodeLinear.h" />
     <ClInclude Include="OperatorTable.h" />

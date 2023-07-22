@@ -4,7 +4,7 @@
 #include "NodeLinear.cpp"
 
 template <typename T>
-class CollectionQueue {
+class VectorQueue {
 
 	private:
 
@@ -26,7 +26,7 @@ class CollectionQueue {
 
 	public:
 
-		CollectionQueue() {
+		VectorQueue() {
 			head = Optional<NodeLinear<T>>::None();
 			tail = Optional<NodeLinear<T>>::None();
 		}
@@ -45,7 +45,7 @@ class CollectionQueue {
 			Insert(node);
 		}
 
-		Optional<NodeLinear<T>> Delete() {
+		Optional<NodeLinear<T>> Remove() {
 			if (head.IsSome()) {
 				NodeLinear<T>* headOriginal = head.Unwrap();
 				Optional<NodeLinear<T>> headReference = headOriginal->GetReference();

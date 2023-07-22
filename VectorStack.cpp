@@ -4,7 +4,7 @@
 #include "NodeLinear.cpp"
 
 template <typename T>
-class CollectionStack {
+class VectorStack {
 
 	private:
 
@@ -22,7 +22,7 @@ class CollectionStack {
 
 	public:
 
-		CollectionStack() {
+		VectorStack() {
 			tail = Optional<NodeLinear<T>>::None();
 		}
 
@@ -40,7 +40,7 @@ class CollectionStack {
 			Insert(node);
 		}
 
-		Optional<NodeLinear<T>> Delete() {
+		Optional<NodeLinear<T>> Remove() {
 			if (tail.IsSome()) {
 				NodeLinear<T>* tailOriginal = tail.Unwrap();
 				Optional<NodeLinear<T>> tailReference = tailOriginal->GetReference();

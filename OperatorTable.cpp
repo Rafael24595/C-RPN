@@ -1,18 +1,18 @@
 #pragma once
 
 #include "Optional.cpp"
-#include "CollectionHashKey.cpp"
+#include "CollectionHash.cpp"
 
 class OperatorTable {
 
 	private:
-		CollectionHashKey<std::string, int>* precedence = []() {
-			CollectionHashKey<std::string, int>* p = new CollectionHashKey<std::string, int>();
-			p->Insert("+", 2);
-			p->Insert("-", 2);
-			p->Insert("/", 3);
-			p->Insert("*", 3);
-			p->Insert("^", 4);
+		CollectionHash<std::string, int>* precedence = []() {
+			CollectionHash<std::string, int>* p = new CollectionHash<std::string, int>();
+			p->Put("+", 2);
+			p->Put("-", 2);
+			p->Put("/", 3);
+			p->Put("*", 3);
+			p->Put("^", 4);
 			return p;
 		}();
 
@@ -21,7 +21,7 @@ class OperatorTable {
 		static Optional<int> GetPrecedence(char o) {
 			OperatorTable table = OperatorTable();
 			string key = &o;
-			return table.precedence->Get(key);
+			return table.precedence->Find(key);
 		}
 
 };

@@ -33,25 +33,28 @@
     <ClCompile Include="NodeLinear.cpp">
       <Filter>Archivos de origen\structure</Filter>
     </ClCompile>
-    <ClCompile Include="CollectionStack.cpp">
+    <ClCompile Include="VectorStack.cpp">
       <Filter>Archivos de origen\structure</Filter>
     </ClCompile>
     <ClCompile Include="Rpn.cpp">
       <Filter>Archivos de origen\parser</Filter>
     </ClCompile>
-    <ClCompile Include="CollectionQueue.cpp">
+    <ClCompile Include="VectorQueue.cpp">
       <Filter>Archivos de origen\structure</Filter>
     </ClCompile>
     <ClCompile Include="Tools.cpp">
       <Filter>Archivos de origen\utils</Filter>
     </ClCompile>
-    <ClCompile Include="NodeHashKeyLinear.cpp">
+    <ClCompile Include="NodeKeyHashLinear.cpp">
       <Filter>Archivos de origen\structure</Filter>
     </ClCompile>
-    <ClCompile Include="CollectionHashKey.cpp">
+    <ClCompile Include="CollectionHash.cpp">
       <Filter>Archivos de origen\structure</Filter>
     </ClCompile>
     <ClCompile Include="OperatorTable.cpp">
+      <Filter>Archivos de origen\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="ToolsCollection.cpp">
       <Filter>Archivos de origen\utils</Filter>
     </ClCompile>
   </ItemGroup>
@@ -78,6 +81,9 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="OperatorTable.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="CollectionTools.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
