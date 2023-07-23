@@ -1,27 +1,26 @@
-#pragma once
+#include "OperatorTable.h"
+#include "CollectionHash.cpp" // Include the implementation of CollectionHash template
+#include <string>
 
-#include "Optional.cpp"
-#include "CollectionHash.cpp"
+OperatorTable* OperatorTable::instance = nullptr;
 
-class OperatorTable {
+OperatorTable::OperatorTable() {
+    precedence = new CollectionHash<std::string, int>();
+    precedence->Put("+", 2);
+    precedence->Put("-", 2);
+    precedence->Put("/", 3);
+    precedence->Put("*", 3);
+    precedence->Put("^", 4);
+}
 
-	private:
-		CollectionHash<std::string, int>* precedence = []() {
-			CollectionHash<std::string, int>* p = new CollectionHash<std::string, int>();
-			p->Put("+", 2);
-			p->Put("-", 2);
-			p->Put("/", 3);
-			p->Put("*", 3);
-			p->Put("^", 4);
-			return p;
-		}();
+OperatorTable* OperatorTable::GetInstance() {
+    if (instance == nullptr) {
+        instance = new OperatorTable();
+    }
+    return instance;
+}
 
-	public:
-
-		static Optional<int> GetPrecedence(char o) {
-			OperatorTable table = OperatorTable();
-			string key = &o;
-			return table.precedence->Find(key);
-		}
-
-};
+Optional<int> OperatorTable::GetPrecedence(char o) {
+    std::string key(1, o);
+    return precedence->Find(key);
+}

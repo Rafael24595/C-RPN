@@ -8,7 +8,7 @@ using namespace std;
 #include "VectorStack.cpp"
 #include "VectorQueue.cpp"
 #include "Tools.cpp"
-#include "OperatorTable.cpp"
+#include "OperatorTable.h"
 
 class Rpn {
 
