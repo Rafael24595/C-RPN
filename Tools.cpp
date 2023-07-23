@@ -18,7 +18,7 @@ class Tools {
 		}
 
 		static bool IsBlankSpace(char ch) {
-			if (ch == '\s') {
+			if (ch == '\s' || ch == ' ') {
 				return true;
 			}
 			return false;

@@ -102,9 +102,13 @@ class Rpn {
 
 		void PullStack() {
 			Optional<char> node = stack.Remove();
+			queue.Insert(' ');
 			while (node.IsSome()) {
 				queue.Insert(*node.Unwrap());
 				node = stack.Remove();
+				if (node.IsSome()) {
+					queue.Insert(' ');
+				}
 			}
 		}
 
@@ -126,11 +130,15 @@ class Rpn {
 		}
 
 		void Print() {
-			Optional<char> node = queue.Remove();
-			while (node.IsSome()) {
-				char element = *node.Unwrap();
-				cout << element;
-				node = queue.Remove();
+			Optional<char> oActual = queue.Remove();
+			Optional<char> oPrevious = Optional<char>::None();
+			while (oActual.IsSome()) {
+				char actual = *oActual.Unwrap();
+				if (oPrevious.IsNone() || !(Tools::IsBlankSpace(*oPrevious.Unwrap()) && Tools::IsBlankSpace(actual))) {
+					cout << actual;
+				}
+				oActual = queue.Remove();
+				oPrevious = Optional<char>::Some(actual);
 			}
 		}
 
