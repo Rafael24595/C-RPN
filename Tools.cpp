@@ -39,7 +39,7 @@ class Tools {
 		}
 
 		static bool IsOperator(char ch) {
-			if (ch == '%' || ch == '/' || ch == '*' || ch == '+' || ch == '-') {
+			if (ch == '^' || ch == '*' || ch == '/' || ch == '+' || ch == '-') {
 				return true;
 			}
 			return false;

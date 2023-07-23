@@ -26,8 +26,11 @@ class VectorStack {
 			tail = Optional<NodeLinear<T>>::None();
 		}
 
-		Optional<NodeLinear<T>> Get() {
-			return tail;
+		Optional<T> Get() {
+			if(tail.IsSome()) {
+				return Optional<T>::Some(tail.Unwrap()->GetValue());
+			}
+			return Optional<T>::None();
 		}
 
 		void Insert(T element) {
@@ -40,15 +43,15 @@ class VectorStack {
 			Insert(node);
 		}
 
-		Optional<NodeLinear<T>> Remove() {
+		Optional<T> Remove() {
 			if (tail.IsSome()) {
 				NodeLinear<T>* tailOriginal = tail.Unwrap();
 				Optional<NodeLinear<T>> tailReference = tailOriginal->GetReference();
 				tailOriginal->SetReference(Optional<NodeLinear<T>>::None());
 				tail = tailReference;
-				return Optional<NodeLinear<T>>::Some(tailOriginal);
+				return Optional<T>::Some(tailOriginal->GetValue());
 			}
-			return tail;
+			return Optional<T>::None();
 		}
 
 		int Length() {

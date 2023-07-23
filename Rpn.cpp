@@ -37,7 +37,49 @@ class Rpn {
 		}
 
 		void EvalueOperator(char ch) {
+			Optional<int> actualPrecedence = OperatorTable::GetPrecedence(ch);
+			if (actualPrecedence.IsNone()) {
+				throw std::runtime_error("Unknown operator " + ch);
+			}
+
+			bool pushQueue = EvalueOperatorPrecedence(ch, *actualPrecedence.Unwrap());
+			if (pushQueue) {
+				Optional<char> lastOperator = stack.Remove();
+				queue.Insert(lastOperator.Unwrap());
+			}
+
 			stack.Insert(ch);
+		}
+
+		bool EvalueOperatorPrecedence(char ch, int actualPrecedence) {
+			Optional<char> oLastOperator = stack.Get();
+			if (oLastOperator.IsSome()) {
+				char* lastOperator = oLastOperator.Unwrap();
+				Optional<int> oLastPrecedence = OperatorTable::GetPrecedence(*lastOperator);
+				if (oLastPrecedence.IsSome()) {
+					int lastPrecedence = *oLastPrecedence.Unwrap();
+					return EvalueOperatorAssociativity(ch, actualPrecedence, lastPrecedence);
+				}
+			}
+
+			return false;
+		}
+
+		bool EvalueOperatorAssociativity(char ch, int actualPrecedence, int lastPrecedence) {
+			Optional<bool> actualAssociativity = OperatorTable::GetAssociativity(ch);
+			if (actualAssociativity.IsNone()) {
+				throw std::runtime_error("Unknown operator " + ch);
+			}
+
+			if (*actualAssociativity.Unwrap() && actualPrecedence <= lastPrecedence) {
+				return true;
+			}
+
+			if (!*actualAssociativity.Unwrap() && lastPrecedence > actualPrecedence) {
+				return true;
+			}
+
+			return false;
 		}
 
 		void EvalueOpenParenthesis(char ch) {
@@ -45,18 +87,25 @@ class Rpn {
 		}
 
 		void EvalueCloseParenthesis(char ch) {
-			Optional<NodeLinear<char>> node = stack.Remove();
-			if (Tools::IsOpenParenthesis(ch)) {
-				return;
-			}
-			if (node.IsNone()) {
+			Optional<char> element = stack.Remove();
+			if (element.IsNone()) {
 				throw std::runtime_error("Close parenthesis without initialization detected.");
 			}
-			char* next = node.Unwrap()->GetValue();
-			if (!Tools::IsOpenParenthesis(*next)) {
-				queue.Insert(*next);
+			if (Tools::IsOpenParenthesis(*element.Unwrap())) {
+				return;
 			}
-			return EvalueCloseParenthesis(*next);
+			if (!Tools::IsOpenParenthesis(*element.Unwrap())) {
+				queue.Insert(*element.Unwrap());
+			}
+			return EvalueCloseParenthesis(*element.Unwrap());
+		}
+
+		void PullStack() {
+			Optional<char> node = stack.Remove();
+			while (node.IsSome()) {
+				queue.Insert(*node.Unwrap());
+				node = stack.Remove();
+			}
 		}
 
 	public:
@@ -72,17 +121,17 @@ class Rpn {
 				char ch = expression[i];
 				rpn.EvalueChar(ch);
 			}
+			rpn.PullStack();
 			return rpn;
 		}
 
 		void Print() {
-			Optional<NodeLinear<char>> node = queue.Remove();
+			Optional<char> node = queue.Remove();
 			while (node.IsSome()) {
-				char element = *node.Unwrap()->GetValue();
+				char element = *node.Unwrap();
 				cout << element;
 				node = queue.Remove();
 			}
 		}
 
 };
-

@@ -31,8 +31,11 @@ class VectorQueue {
 			tail = Optional<NodeLinear<T>>::None();
 		}
 
-		Optional<NodeLinear<T>> Get() {
-			return head;
+		Optional<T> Get() {
+			if (head.IsSome()) {
+				return Optional<T>::Some(head.Unwrap()->GetValue());
+			}
+			return Optional<T>::None();
 		}
 
 		void Insert(T element) {
@@ -45,15 +48,15 @@ class VectorQueue {
 			Insert(node);
 		}
 
-		Optional<NodeLinear<T>> Remove() {
+		Optional<T> Remove() {
 			if (head.IsSome()) {
 				NodeLinear<T>* headOriginal = head.Unwrap();
 				Optional<NodeLinear<T>> headReference = headOriginal->GetReference();
 				headOriginal->SetReference(Optional<NodeLinear<T>>::None());
 				head = headReference;
-				return Optional<NodeLinear<T>>::Some(headOriginal);
+				return Optional<T>::Some(headOriginal->GetValue());
 			}
-			return head;
+			return Optional<T>::None();
 		}
 
 		int Length() {

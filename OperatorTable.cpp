@@ -11,6 +11,13 @@ OperatorTable::OperatorTable() {
     precedence->Put("/", 3);
     precedence->Put("*", 3);
     precedence->Put("^", 4);
+
+    associativity = new CollectionHash<std::string, bool>();
+    associativity->Put("+", true);
+    associativity->Put("-", true);
+    associativity->Put("/", true);
+    associativity->Put("*", true);
+    associativity->Put("^", false);
 }
 
 OperatorTable* OperatorTable::GetInstance() {
@@ -21,6 +28,13 @@ OperatorTable* OperatorTable::GetInstance() {
 }
 
 Optional<int> OperatorTable::GetPrecedence(char o) {
+    OperatorTable* table = GetInstance();
     std::string key(1, o);
-    return precedence->Find(key);
+    return table->precedence->Find(key);
+}
+
+Optional<bool> OperatorTable::GetAssociativity(char o) {
+    OperatorTable* table = GetInstance();
+    std::string key(1, o);
+    return table->associativity->Find(key);
 }

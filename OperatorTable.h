@@ -7,19 +7,21 @@ class OperatorTable {
     private:
 
         CollectionHash<std::string, int>* precedence;
+        CollectionHash<std::string, bool>* associativity;
 
     protected:
 
-        OperatorTable();
-
         static OperatorTable* instance;
+
+        OperatorTable();
+        static OperatorTable* GetInstance();
 
     public:
 
         OperatorTable(const OperatorTable&) = delete;
         void operator=(const OperatorTable&) = delete;
 
-        static OperatorTable* GetInstance();
+        static Optional<int> GetPrecedence(char o);
+        static Optional<bool> GetAssociativity(char o);
 
-        Optional<int> GetPrecedence(char o);
 };
