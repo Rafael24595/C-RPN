@@ -24,6 +24,17 @@ class Infix {
 			}
 		}
 
+		void EvalueDigit(char ch) {
+			if (stack.IsEmpty() || Tools::IsBlankSpace(ch)) {
+				Expression* ex = new Expression();
+				stack.Insert(ex);
+			}
+			if (!Tools::IsBlankSpace(ch)) {
+				Optional<Expression> ex = stack.Get();
+				ex.Unwrap()->Insert(ch);
+			}
+		}
+
 		void EvalueOperator(char ch) {
 			Optional<Expression> previous = stack.Get();
 			if (previous.IsSome() && previous.Unwrap()->IsEmpty()) {
@@ -81,17 +92,6 @@ class Infix {
 			aux.Insert(expression);
 			aux.Insert(')');
 			return aux.GetExpression();
-		}
-
-		void EvalueDigit(char ch) {
-			if (stack.IsEmpty() || Tools::IsBlankSpace(ch)) {
-				Expression* ex = new Expression();
-				stack.Insert(ex);
-			}
-			if (!Tools::IsBlankSpace(ch)) {
-				Optional<Expression> ex = stack.Get();
-				ex.Unwrap()->Insert(ch);
-			}
 		}
 
 	public:
