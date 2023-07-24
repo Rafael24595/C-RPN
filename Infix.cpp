@@ -69,7 +69,6 @@ class Infix {
 				expression = right.Unwrap()->GetExpression();
 				int rightPrecedence = right.Unwrap()->Precedence();
 				if (actualAssociativity && actualPrecedence > rightPrecedence) {
-					Expression aux = Expression();
 					expression = EncapsuleExpression(expression);
 				}
 			}
