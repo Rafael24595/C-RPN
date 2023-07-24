@@ -1,18 +1,18 @@
 #include "OperatorTable.h"
-#include "CollectionHash.cpp" // Include the implementation of CollectionHash template
+#include "CollectionSimple.cpp"
 #include <string>
 
 OperatorTable* OperatorTable::instance = nullptr;
 
 OperatorTable::OperatorTable() {
-    precedence = new CollectionHash<std::string, int>();
+    precedence = new CollectionSimple<std::string, int>();
     precedence->Put("+", 2);
     precedence->Put("-", 2);
     precedence->Put("/", 3);
     precedence->Put("*", 3);
     precedence->Put("^", 4);
 
-    associativity = new CollectionHash<std::string, bool>();
+    associativity = new CollectionSimple<std::string, bool>();
     associativity->Put("+", true);
     associativity->Put("-", true);
     associativity->Put("/", true);

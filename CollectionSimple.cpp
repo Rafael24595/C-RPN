@@ -1,16 +1,11 @@
 #pragma once
 
-#include <stdexcept>
-#include <functional>
-#include <iostream>
-#include <vector>
-using namespace std;
-
+#include "ToolsCollection.cpp"
 #include "Optional.cpp"
 #include "NodeKeyHashLinear.cpp"
 
 template <typename K, typename T>
-class CollectionHash {
+class CollectionSimple {
 
 	private:
 
@@ -40,7 +35,7 @@ class CollectionHash {
 
 		void InjectOrder(Optional<NodeKeyHashLinear<K, T>> node) {
 			NodeKeyHashLinear<K, T>* actual = head.Unwrap();
-			while (actual->GetReference().IsSome() && node.Unwrap()->GetHash() > actual->GetHash()) {
+			while (actual->GetReference().IsSome() && node.Unwrap()->GetHash() < actual->GetHash()) {
 				actual = actual->GetReference().Unwrap();
 			}
 			Optional<NodeKeyHashLinear<K, T>> next = actual->GetReference();
@@ -49,8 +44,7 @@ class CollectionHash {
 		}
 
 		Optional<NodeKeyHashLinear<K, T>> FindNode(K key) {
-			hash<K> khash;
-			int hashKey = khash(key);
+			int hashKey = ToolsCollection<K>::GenerateHash(key);
 			Optional<NodeKeyHashLinear<K, T>> node = head;
 			while (node.IsSome() && node.Unwrap()->GetHash() != hashKey) {
 				node = node.Unwrap()->GetReference();
@@ -60,7 +54,7 @@ class CollectionHash {
 
 	public:
 
-		CollectionHash() {
+		CollectionSimple() {
 			head = Optional<NodeKeyHashLinear<K,T>>::None();
 		}
 
@@ -83,8 +77,7 @@ class CollectionHash {
 		}
 
 		Optional<T> Remove(K key) {
-			hash<K> khash;
-			int hashKey = khash(key);
+			int hashKey = ToolsCollection<K>::GenerateHash(key);
 			Optional<NodeKeyHashLinear<K, T>> node = head;
 			Optional<NodeKeyHashLinear<K, T>> previous = Optional<NodeKeyHashLinear<K, T>>::None();
 			while (node.IsSome() && node.Unwrap()->GetHash() != hashKey) {

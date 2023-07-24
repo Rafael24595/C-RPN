@@ -129,7 +129,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="c-rpn.cpp" />
-    <ClCompile Include="CollectionHash.cpp" />
+    <ClCompile Include="CollectionSimple.cpp" />
     <ClCompile Include="ToolsCollection.cpp" />
     <ClCompile Include="VectorQueue.cpp" />
     <ClCompile Include="VectorStack.cpp" />

@@ -1,13 +1,13 @@
 #pragma once
 
-#include "CollectionHash.cpp" // Include the header file for CollectionHash template
+#include "CollectionSimple.cpp" // Include the header file for CollectionHash template
 
 class OperatorTable {
 
     private:
 
-        CollectionHash<std::string, int>* precedence;
-        CollectionHash<std::string, bool>* associativity;
+        CollectionSimple<std::string, int>* precedence;
+        CollectionSimple<std::string, bool>* associativity;
 
     protected:
 

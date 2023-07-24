@@ -48,7 +48,7 @@
     <ClCompile Include="NodeKeyHashLinear.cpp">
       <Filter>Archivos de origen\structure</Filter>
     </ClCompile>
-    <ClCompile Include="CollectionHash.cpp">
+    <ClCompile Include="CollectionSimple.cpp">
       <Filter>Archivos de origen\structure</Filter>
     </ClCompile>
     <ClCompile Include="OperatorTable.cpp">
