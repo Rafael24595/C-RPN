@@ -1,7 +1,11 @@
 #pragma once
 
+#include <string>
+using namespace std;
+
 #include "Optional.cpp"
 #include "NodeLinear.cpp"
+#include "ToolsCollection.cpp"
 
 template <typename T>
 class VectorStack {
@@ -71,6 +75,22 @@ class VectorStack {
 
 		bool IsEmpty() {
 			return tail.IsNone();
+		}
+
+		string ToString() {
+			string str = "";
+			if (IsEmpty()) {
+				return str;
+			}
+
+			Optional<NodeLinear<T>> child = tail.Unwrap();
+			while (child.IsSome()) {
+				T value = *child.Unwrap()->GetValue();
+				str = str + ToolsCollection<T>::ToString(value);
+				child = child.Unwrap()->GetReference();
+			}
+
+			return str;
 		}
 
 };

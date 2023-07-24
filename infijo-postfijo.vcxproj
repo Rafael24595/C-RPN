@@ -130,6 +130,8 @@
   <ItemGroup>
     <ClCompile Include="c-rpn.cpp" />
     <ClCompile Include="CollectionSimple.cpp" />
+    <ClCompile Include="Expression.cpp" />
+    <ClCompile Include="Infix.cpp" />
     <ClCompile Include="ToolsCollection.cpp" />
     <ClCompile Include="VectorQueue.cpp" />
     <ClCompile Include="VectorStack.cpp" />
@@ -138,13 +140,15 @@
     <ClCompile Include="OperatorTable.cpp" />
     <ClCompile Include="Optional.cpp" />
     <ClCompile Include="Tools.cpp" />
-    <ClCompile Include="Rpn.cpp" />
+    <ClCompile Include="Postfix.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CollectionKey.h" />
     <ClInclude Include="CollectionQueue.h" />
     <ClInclude Include="CollectionStack.h" />
     <ClInclude Include="CollectionTools.h" />
+    <ClInclude Include="Expression.h" />
+    <ClInclude Include="Infix.h" />
     <ClInclude Include="NodeBidirectional.h" />
     <ClInclude Include="NodeLinear.h" />
     <ClInclude Include="OperatorTable.h" />

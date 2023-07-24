@@ -36,7 +36,7 @@
     <ClCompile Include="VectorStack.cpp">
       <Filter>Archivos de origen\structure</Filter>
     </ClCompile>
-    <ClCompile Include="Rpn.cpp">
+    <ClCompile Include="Postfix.cpp">
       <Filter>Archivos de origen\parser</Filter>
     </ClCompile>
     <ClCompile Include="VectorQueue.cpp">
@@ -56,6 +56,12 @@
     </ClCompile>
     <ClCompile Include="ToolsCollection.cpp">
       <Filter>Archivos de origen\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Infix.cpp">
+      <Filter>Archivos de origen\parser</Filter>
+    </ClCompile>
+    <ClCompile Include="Expression.cpp">
+      <Filter>Archivos de origen\parser</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -84,6 +90,12 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="CollectionTools.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Infix.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Expression.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

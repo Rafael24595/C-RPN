@@ -1,7 +1,11 @@
 #pragma once
 
+#include <string>
+using namespace std;
+
 #include "Optional.cpp"
 #include "NodeLinear.cpp"
+#include "ToolsCollection.cpp"
 
 template <typename T>
 class VectorQueue {
@@ -38,6 +42,14 @@ class VectorQueue {
 			return Optional<T>::None();
 		}
 
+		Optional<T> ViewTail() {
+			if (tail.IsSome()) {
+				T* clone = new T(*tail.Unwrap()->GetValue());
+				return Optional<T>::Some(clone);
+			}
+			return Optional<T>::None();
+		}
+
 		void Insert(T element) {
 			NodeLinear<T>* node = new NodeLinear<T>(element);
 			Insert(node);
@@ -65,7 +77,7 @@ class VectorQueue {
 				return count;
 			}
 
-			Optional<NodeLinear<T>> child = tail.Unwrap();
+			Optional<NodeLinear<T>> child = head.Unwrap();
 			while (child.IsSome()) {
 				child = child.Unwrap()->GetReference();
 				count = count + 1;
@@ -76,6 +88,22 @@ class VectorQueue {
 
 		bool IsEmpty() {
 			return tail.IsNone();
+		}
+
+		string ToString() {
+			string str = "";
+			if (IsEmpty()) {
+				return str;
+			}
+
+			Optional<NodeLinear<T>> child = head.Unwrap();
+			while (child.IsSome()) {
+				T value = *child.Unwrap()->GetValue();
+				str = str + ToolsCollection<T>::ToString(value);
+				child = child.Unwrap()->GetReference();
+			}
+
+			return str;
 		}
 
 };

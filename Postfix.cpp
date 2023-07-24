@@ -4,13 +4,12 @@
 #include <string>
 using namespace std;
 
-#include "NodeLinear.cpp"
 #include "VectorStack.cpp"
 #include "VectorQueue.cpp"
 #include "Tools.cpp"
 #include "OperatorTable.h"
 
-class Rpn {
+class Postfix {
 
 	private:
 
@@ -33,7 +32,10 @@ class Rpn {
 		}
 
 		void EvalueDigit(char ch) {
-			queue.Insert(ch);
+			Optional<char> previous = queue.ViewTail();
+			if (previous.IsNone() || !(Tools::IsBlankSpace(*previous.Unwrap()) && Tools::IsBlankSpace(ch))) {
+				queue.Insert(ch);
+			}
 		}
 
 		void EvalueOperator(char ch) {
@@ -114,31 +116,27 @@ class Rpn {
 
 	public:
 
-		Rpn() {
+		Postfix() {
 			stack = VectorStack<char>();
 			queue = VectorQueue<char>();
 		}
 
-		static Rpn Transform(string expression) {
-			Rpn rpn = Rpn();
+		static Postfix Transform(string expression) {
+			Postfix postfix = Postfix();
 			for (int i = 0; i < expression.size(); i++) {
 				char ch = expression[i];
-				rpn.EvalueChar(ch);
+				postfix.EvalueChar(ch);
 			}
-			rpn.PullStack();
-			return rpn;
+			postfix.PullStack();
+			return postfix;
 		}
 
 		void Print() {
 			Optional<char> oActual = queue.Remove();
-			Optional<char> oPrevious = Optional<char>::None();
 			while (oActual.IsSome()) {
 				char actual = *oActual.Unwrap();
-				if (oPrevious.IsNone() || !(Tools::IsBlankSpace(*oPrevious.Unwrap()) && Tools::IsBlankSpace(actual))) {
-					cout << actual;
-				}
+				cout << actual;
 				oActual = queue.Remove();
-				oPrevious = Optional<char>::Some(actual);
 			}
 		}
 

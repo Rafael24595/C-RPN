@@ -1,10 +1,22 @@
 #include <iostream>
-#include "Rpn.cpp"
+#include "Postfix.cpp"
+#include "Infix.cpp"
 
 int main() {
     try {
-        Rpn rpn = Rpn::Transform("3 + 4 * 2 / ( 1 - 5 ) ^ 2 ^ 3");
-        rpn.Print();
+        string p = "3 + 4 * 2 / ( 1 - 5 ) ^ 2 ^ 3";
+        cout << "Infix expression: \n\t" + p;
+        Postfix postfix = Postfix::Transform(p);
+        cout << "\nTo postfix:\n\t";
+        postfix.Print();
+
+        cout << "\n\n";
+
+        string i = "3 4 2 * 1 5 - 2 3 ^ ^ / +";
+        cout << "Postfix expression: \n\t" + i;
+        Infix infix = Infix::Transform(i);
+        cout << "\nTo infix:\n\t";
+        infix.Print();
     } catch (const std::exception& e) {
         std::cerr << e.what();
     }
