@@ -26,7 +26,7 @@ Postfix Postfix::Transform(string expression) {
 }
 
 void Postfix::EvalueChar(char ch) {
-	if (Tools::IsNumber(ch) || Tools::IsSeparator(ch) || Tools::IsBlankSpace(ch)) {
+	if (Tools::IsNumber(ch) || Tools::IsLetter(ch) || Tools::IsSeparator(ch) || Tools::IsBlankSpace(ch)) {
 		return EvalueDigit(ch);
 	}
 	if (Tools::IsOperator(ch)) {
@@ -130,4 +130,13 @@ void Postfix::Print() {
 		cout << actual;
 		oActual = queue.Remove();
 	}
+	stack = VectorStack<char>();
+	queue = VectorQueue<char>();
+}
+
+string Postfix::ToString() {
+	string str = queue.ToString();
+	stack = VectorStack<char>();
+	queue = VectorQueue<char>();
+	return str;
 }

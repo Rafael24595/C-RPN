@@ -27,7 +27,7 @@ Infix Infix::Transform(string expression) {
 }
 
 void Infix::EvalueChar(char ch) {
-	if (Tools::IsNumber(ch) || Tools::IsSeparator(ch) || Tools::IsBlankSpace(ch)) {
+	if (Tools::IsNumber(ch) || Tools::IsLetter(ch) || Tools::IsSeparator(ch) || Tools::IsBlankSpace(ch)) {
 		return EvalueDigit(ch);
 	}
 	if (Tools::IsOperator(ch)) {
@@ -118,4 +118,15 @@ void Infix::Print() {
 			}
 		}
 	}
+}
+
+string Infix::ToString() {
+	Optional<Expression> expression = stack.Get();
+	string str = "";
+	if (expression.IsSome()) {
+		VectorQueue<char> vector = expression.Unwrap()->GetExpression();
+		string str = vector.ToString();
+		stack = VectorStack<Expression>();
+	}
+	return str;
 }

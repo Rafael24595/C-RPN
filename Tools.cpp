@@ -28,8 +28,29 @@ bool Tools::IsSeparator(char ch) {
 	return false;
 }
 
+bool Tools::IsLetter(char ch) {
+	return IsLetterLowerCase(ch) || IsLetterUpperCase(ch);
+}
+
+bool Tools::IsLetterLowerCase(char ch) {
+	int ascii = int(ch);
+	if (ascii >= ASCII_a && ascii <= ASCII_z) {
+		return true;
+	}
+	return false;
+}
+
+bool Tools::IsLetterUpperCase(char ch) {
+	int ascii = int(ch);
+	if (ascii >= ASCII_A && ascii <= ASCII_Z) {
+		return true;
+	}
+	return false;
+}
+
 bool Tools::IsNumber(char ch) {
-	if (ch == '0' || ch == '1' || ch == '2' || ch == '3' || ch == '4' || ch == '5' || ch == '6' || ch == '7' || ch == '9') {
+	int ascii = int(ch);
+	if (ascii >= ASCII_1 && ascii < ASCII_9) {
 		return true;
 	}
 	return false;

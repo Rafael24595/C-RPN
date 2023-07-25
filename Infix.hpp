@@ -26,5 +26,6 @@ class Infix {
 		Infix();
 		static Infix Transform(string expression);
 		void Print();
+		string ToString();
 
 };

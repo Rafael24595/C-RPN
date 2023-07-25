@@ -28,5 +28,6 @@ class Postfix {
 		Postfix();
 		static Postfix Transform(string expression);
 		void Print();
+		string ToString();
 
 };

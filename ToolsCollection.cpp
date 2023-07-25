@@ -24,9 +24,14 @@ class ToolsCollection {
 		}
 
 		static std::string ToString(const T& value) {
-			std::ostringstream ss;
-			ss << value;
-			return ss.str();
+			if constexpr (std::is_convertible_v<T, std::ostream>) {
+				std::ostringstream ss;
+				ss << value;
+				return ss.str();
+			}
+			else {
+				throw std::runtime_error("Cannot convert type T to string.");
+			}
 		}
 
 };
