@@ -71,13 +71,13 @@
     <ClInclude Include="CollectionStack.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="ToRpn.h">
+    <ClInclude Include="Postfix.hpp">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="CollectionQueue.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="Tools.h">
+    <ClInclude Include="Tools.hpp">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="NodeBidirectional.h">
@@ -86,16 +86,16 @@
     <ClInclude Include="CollectionKey.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="OperatorTable.h">
+    <ClInclude Include="OperatorTable.hpp">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="CollectionTools.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="Infix.h">
+    <ClInclude Include="Infix.hpp">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="Expression.h">
+    <ClInclude Include="Expression.hpp">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

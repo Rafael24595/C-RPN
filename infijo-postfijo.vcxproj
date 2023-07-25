@@ -147,13 +147,13 @@
     <ClInclude Include="CollectionQueue.h" />
     <ClInclude Include="CollectionStack.h" />
     <ClInclude Include="CollectionTools.h" />
-    <ClInclude Include="Expression.h" />
-    <ClInclude Include="Infix.h" />
+    <ClInclude Include="Expression.hpp" />
+    <ClInclude Include="Infix.hpp" />
     <ClInclude Include="NodeBidirectional.h" />
     <ClInclude Include="NodeLinear.h" />
-    <ClInclude Include="OperatorTable.h" />
-    <ClInclude Include="Tools.h" />
-    <ClInclude Include="ToRpn.h" />
+    <ClInclude Include="OperatorTable.hpp" />
+    <ClInclude Include="Tools.hpp" />
+    <ClInclude Include="Postfix.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

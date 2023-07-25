@@ -1,6 +1,8 @@
-#include "OperatorTable.h"
-#include "CollectionSimple.cpp"
 #include <string>
+
+#include "OperatorTable.hpp"
+
+#include "CollectionSimple.cpp"
 
 OperatorTable* OperatorTable::instance = nullptr;
 

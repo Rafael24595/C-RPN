@@ -1,6 +1,6 @@
 #pragma once
 
-#include "CollectionSimple.cpp" // Include the header file for CollectionHash template
+#include "CollectionSimple.cpp"
 
 class OperatorTable {
 

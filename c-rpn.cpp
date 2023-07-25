@@ -1,6 +1,6 @@
 #include <iostream>
-#include "Postfix.cpp"
-#include "Infix.cpp"
+#include "Postfix.hpp"
+#include "Infix.hpp"
 
 int main() {
     try {
